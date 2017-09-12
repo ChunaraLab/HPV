@@ -12,7 +12,7 @@ from multiprocessing import Process, freeze_support
 if __name__ == '__main__':
     freeze_support()
 
-    df = pd.DataFrame.from_csv("./spanish_marked_tweets.csv")
+    df = pd.DataFrame.from_csv("./template_marked_tweets.csv")
     df = df.reset_index()
 
     X= df.t 
@@ -59,13 +59,13 @@ if __name__ == '__main__':
     
     pipe2.fit(X,y)
 
-    dd = pd.DataFrame.from_csv("./spanish_unmarked_tweets.csv").reset_index()
+    dd = pd.DataFrame.from_csv("./template_unmarked_tweets.csv").reset_index()
     #print 11
     y_pred_new = pipe2.predict(dd.t)
     #y_pred_new = pipe2.predict(X)
     
     for row in y_pred_new:
-        with open("predicted_spanish.csv", "a") as myfile:
+        with open("predicted_tag.csv", "a") as myfile:
             myfile.write('"{0}"\n'.format(row))
             
     
